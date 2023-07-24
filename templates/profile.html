@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{% block content %}
+  <div class="profile">
+    <h1>Profie</h1>
+    <ul>
+      <figure><img src="http://127.0.0.1:5000/{{user.image}}" alt="#"/></figure>
+      <li>Email: {{user.email}}</li>
+      <li>username: {{user.username}}</li>
+      <li>Full Name: {{user.full_name}}</li>
+      <li>age: {{user.age}}</li>
+    </ul>
+    {% for post in posts %}
+    <div class=" col-md-4">
+       <div class="latest">
+          <figure><img src="{{ url_for('static', filename='images/blog1.jpg') }}" alt="#"/></figure>
+          <span>{{post.created_date}}</span>
+          <div class="nostrud">
+             <h3><a href='http://127.0.0.1:5000/{{post.id}}'>{{post.title}}</a></h3>
+             <p>{{ post.content }}</p>
+             <p><a href="http://127.0.0.1:5000/profile/{{post.author_id}}">{{ post.author.username }}</a></p>
+             <a class="read_more" href="http://127.0.0.1:5000/{{post.id}}">Read More</a>
+          </div>
+       </div>
+    </div>
+    {%endfor%}
+  </div>
+  {% endblock %}
